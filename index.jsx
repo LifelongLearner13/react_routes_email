@@ -7,7 +7,6 @@ var Link = router.Link;
 var IndexRoute = router.IndexRoute;
 var hashHistory = router.hashHistory;
 
-var Email = require('./components/email');
 var EmailList = require('./components/emaillist');
 var EmailListContainer = require('./components/emaillist-container');
 var EmailContainer = require('./components/emailContainer');
@@ -31,9 +30,11 @@ var App = function(props) {
 var routes = (
   <Router history={hashHistory}>
     <Route path="/emails" component={App}>
-      <Route path=":folder" component={EmailListContainer}>
-        <IndexRoute component={EmailContainer} />
-
+      <Route path=":folder" >
+        <IndexRoute component={EmailListContainer} />
+          <Route path=":id" component={EmailContainer}>
+            <IndexRoute component={EmailContainer} />
+          </Route>
       </Route>
     </Route>
   </Router>
